@@ -1,5 +1,5 @@
 import express from 'express';
-import { GoogleGenAI, Type } from '@google/genai';
+import { GoogleGenAI } from '@google/generative-ai';
 import admin from 'firebase-admin';
 
 // ==========================================
