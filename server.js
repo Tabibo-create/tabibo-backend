@@ -52,8 +52,7 @@ let availableSlots = [
 "11:00", "11:30", "13:00", "13:30", "14:00", "14:30",
 "15:00", "15:30", "16:00", "16:30", "17:00"
 ];
-code
-Code
+
 // Vérifie les RDVs existants
 const apptsSnap = await db.collection("appointments")
   .where("doctorId", "==", doctorId)
@@ -95,8 +94,7 @@ status: 'À venir',
 bookedBy: patientPhone,
 createdAt: admin.firestore.FieldValue.serverTimestamp()
 });
-code
-Code
+
 // Ajout du numéro dans l'annuaire patient
 const userRef = db.collection("users").doc(patientPhone);
 await userRef.set({
@@ -138,8 +136,7 @@ type: "text",
 text: { body: text }
 })
 });
-code
-Code
+
 if (!response.ok) {
     const errText = await response.text();
     console.error(`🚨 WhatsApp API error (Status ${response.status}):`, errText);
@@ -199,8 +196,7 @@ async function processMessageAI(phone, text) {
 if (!memory[phone]) {
 memory[phone] = [];
 }
-code
-Code
+
 // Garder le contexte courant
 memory[phone].push({
     role: "user",
@@ -314,8 +310,7 @@ const body = req.body;
 if (body.object === "whatsapp_business_account") {
 // Toujours renvoyer un statut 200 IMMÉDIATEMENT pour ne pas se faire bloquer par Meta
 res.sendStatus(200);
-code
-Code
+
 try {
   const entry = body.entry?.[0];
   const changes = entry?.changes?.[0];
