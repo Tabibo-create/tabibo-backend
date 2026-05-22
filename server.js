@@ -1,9 +1,12 @@
 import express from 'express';
-import { GoogleGenerativeAI, SchemaType } from "@google/generative-ai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import admin from 'firebase-admin';
 
-const Type = SchemaType;
-
+// On définit les types manuellement pour ne plus dépendre des imports capricieux
+const Type = {
+  OBJECT: "OBJECT",
+  STRING: "STRING"
+};
 // ==========================================
 // 1. INITIALISATION FIREBASE
 // ==========================================
