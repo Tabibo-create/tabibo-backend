@@ -1,12 +1,7 @@
 import express from 'express';
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GoogleGenAI, Type } from '@google/genai';
 import admin from 'firebase-admin';
 
-// On définit les types manuellement pour ne plus dépendre des imports capricieux
-const Type = {
-  OBJECT: "OBJECT",
-  STRING: "STRING"
-};
 // ==========================================
 // 1. INITIALISATION FIREBASE
 // ==========================================
@@ -34,7 +29,7 @@ const db = admin.firestore();
 // ==========================================
 // 2. INITIALISATION GEMINI
 // ==========================================
-const ai = new GoogleGenerativeAI({ 
+const ai = new GoogleGenAI({ 
     apiKey: process.env.GEMINI_API_KEY || "dummy-key-to-prevent-crash"
 });
 
@@ -44,8 +39,8 @@ const ai = new GoogleGenerativeAI({
 const app = express();
 app.use(express.json());
 
-// Port indépendant (3001) tel que demandé pour le microservice
-const PORT = process.env.BOT_PORT || 3001;
+// Port modifié pour Render (variable d'environnement standard)
+const PORT = process.env.PORT || 3001;
 
 // ==========================================
 // 4. OUTILS FIREBASE (Function Calling)
