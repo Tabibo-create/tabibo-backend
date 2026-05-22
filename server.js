@@ -1,6 +1,8 @@
 import express from 'express';
-import { GoogleGenAI } from '@google/generative-ai';
+import { GoogleGenAI, SchemaType } from "@google/generative-ai";
 import admin from 'firebase-admin';
+
+const Type = SchemaType;
 
 // ==========================================
 // 1. INITIALISATION FIREBASE
