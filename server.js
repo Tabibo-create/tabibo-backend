@@ -1,5 +1,5 @@
 import express from 'express';
-import { GoogleGenAI, SchemaType } from "@google/generative-ai";
+import { GoogleGenerativeAI, SchemaType } from "@google/generative-ai";
 import admin from 'firebase-admin';
 
 const Type = SchemaType;
@@ -31,7 +31,7 @@ const db = admin.firestore();
 // ==========================================
 // 2. INITIALISATION GEMINI
 // ==========================================
-const ai = new GoogleGenAI({ 
+const ai = new GoogleGenerativeAI({ 
     apiKey: process.env.GEMINI_API_KEY || "dummy-key-to-prevent-crash"
 });
 
