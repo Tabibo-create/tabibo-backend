@@ -352,5 +352,5 @@ app.post('/webhook', async (req, res) => {
 // Lancement du microservice
 app.listen(PORT, "0.0.0.0", () => {
     console.log(`🚀 [Microservice Amina] Serveur WhatsApp autonome démarré sur le port ${PORT}`);
-console.log(🌍 Endpoint de validation Meta : /webhook);
+console.log(`🌍 Endpoint de validation Meta : /webhook`);
 });
