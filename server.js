@@ -40,7 +40,7 @@ apiKey: process.env.GEMINI_API_KEY || "dummy-key-to-prevent-crash"
 const app = express();
 app.use(express.json());
 // Port indépendant (3001) tel que demandé pour le microservice
-const PORT = process.env.BOT_PORT || 3001;
+const PORT = process.env.PORT || 3001;
 // ==========================================
 // 4. OUTILS FIREBASE (Function Calling)
 // ==========================================
