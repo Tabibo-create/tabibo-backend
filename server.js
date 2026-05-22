@@ -116,7 +116,7 @@ const token = process.env.WHATSAPP_TOKEN;
 const phoneNumberId = process.env.WHATSAPP_PHONE_NUMBER_ID;
 if (!token || !phoneNumberId) {
 console.warn("⚠️ Meta WhatsApp credentials not configured. Skipping message to:", to);
-console.log([WHATSAPP MOCK] To ${to}: ${text});
+console.log(`[WHATSAPP MOCK] To ${to}: ${text}`);
 return;
 }
 const url = https://graph.facebook.com/v17.0/${phoneNumberId}/messages;
