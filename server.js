@@ -52,7 +52,6 @@ let availableSlots = [
 "11:00", "11:30", "13:00", "13:30", "14:00", "14:30",
 "15:00", "15:30", "16:00", "16:30", "17:00"
 ];
-
 // Vérifie les RDVs existants
 const apptsSnap = await db.collection("appointments")
   .where("doctorId", "==", doctorId)
@@ -94,8 +93,7 @@ status: 'À venir',
 bookedBy: patientPhone,
 createdAt: admin.firestore.FieldValue.serverTimestamp()
 });
-
-// Ajout du numéro dans l'annuaire patient
+  // Ajout du numéro dans l'annuaire patient
 const userRef = db.collection("users").doc(patientPhone);
 await userRef.set({
   phone: patientPhone,
@@ -105,7 +103,7 @@ await userRef.set({
 }, { merge: true });
 
 return `Succès: Réservation confirmée pour ${patientName} le ${date} à ${time} pour: ${reason}.`;
-} catch (err) {
+  } catch (err) {
 console.error("book_appointment error:", err);
 return "Erreur technique lors de la réservation dans la base.";
 }
@@ -136,14 +134,13 @@ type: "text",
 text: { body: text }
 })
 });
-
-if (!response.ok) {
+  if (!response.ok) {
     const errText = await response.text();
     console.error(`🚨 WhatsApp API error (Status ${response.status}):`, errText);
 } else {
     console.log(`✓ WhatsApp message sent to ${to}`);
 }
-} catch (error) {
+  } catch (error) {
 console.error("🚨 Failed to send WhatsApp message:", error);
 }
 }
@@ -196,8 +193,7 @@ async function processMessageAI(phone, text) {
 if (!memory[phone]) {
 memory[phone] = [];
 }
-
-// Garder le contexte courant
+  // Garder le contexte courant
 memory[phone].push({
     role: "user",
     parts: [{ text: text }]
@@ -284,7 +280,7 @@ try {
     console.error("[Cerveau IA] Erreur traitement:", err);
     return "Désolé, je rencontre un problème de connexion temporaire. Pouvez-vous répéter ?";
 }
-}
+  }
 // ==========================================
 // 7. ROUTES META WHATSAPP
 // ==========================================
@@ -310,7 +306,6 @@ const body = req.body;
 if (body.object === "whatsapp_business_account") {
 // Toujours renvoyer un statut 200 IMMÉDIATEMENT pour ne pas se faire bloquer par Meta
 res.sendStatus(200);
-
 try {
   const entry = body.entry?.[0];
   const changes = entry?.changes?.[0];
@@ -333,7 +328,7 @@ try {
 } catch (err) {
   console.error("❌ [WhatsApp Bot] Erreur parsing webhook:", err);
 }
-} else {
+  } else {
 // Si la requête ne provient pas de WhatsApp Business
 res.sendStatus(404);
 }
