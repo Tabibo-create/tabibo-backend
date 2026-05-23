@@ -2,6 +2,12 @@ import express from 'express';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import admin from 'firebase-admin';
 
+console.log('--- DIAGNOSTIC DES VARIABLES ---');
+console.log('GEMINI_API_KEY existe ?', !!process.env.GEMINI_API_KEY);
+console.log('WHATSAPP_TOKEN existe ?', !!process.env.WHATSAPP_TOKEN);
+console.log('PHONE_ID existe ?', !!process.env.WHATSAPP_PHONE_NUMBER_ID);
+console.log('--- FIN DU DIAGNOSTIC ---');
+
 // On définit les types manuellement pour conserver ta logique de code en bas
 const Type = {
   OBJECT: "OBJECT",
