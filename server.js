@@ -297,24 +297,27 @@ async function processMessageAI(phone, text) {
 // 7. ROUTES META WHATSAPP
 // ==========================================
 
-// Route de validation (GET) stricte exigée par Meta
+// Route de validation (GET) - Version Ultra-Robuste
 app.get('/webhook', (req, res) => {
   const mode = req.query['hub.mode'];
   const token = req.query['hub.verify_token'];
   const challenge = req.query['hub.challenge'];
 
+  console.log('--- TENTATIVE DE VÉRIFICATION WEBHOOK ---');
+  console.log('Token reçu du navigateur/Meta:', token);
+  console.log('Token attendu (Env):', process.env.WHATSAPP_VERIFY_TOKEN);
+
   if (mode && token) {
-    // On vérifie le token avec la variable d'environnement OU le mot de passe en dur par sécurité
-    if (mode === 'subscribe' && (token === process.env.WHATSAPP_VERIFY_TOKEN || token === 'tabiboamina')) {
+    // On accepte la version avec ou sans underscores pour être sûr à 100%
+    if (mode === 'subscribe' && (token === process.env.WHATSAPP_VERIFY_TOKEN || token === 'tabiboamina' || token === 'tabibo_amina_secret')) {
       console.log('✅ WEBHOOK_VERIFIED');
       return res.status(200).send(challenge);
     } else {
-      console.log('❌ Erreur de Token. Reçu:', token);
+      console.log('❌ ÉCHEC DE VÉRIFICATION : Les tokens ne correspondent pas');
       return res.sendStatus(403);
     }
   }
-  
-  return res.status(400).send('Bad Request');
+  return res.sendStatus(400);
 });
 
 // Route de réception des messages (POST)
