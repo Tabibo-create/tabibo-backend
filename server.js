@@ -304,11 +304,12 @@ app.get('/webhook', (req, res) => {
   const challenge = req.query['hub.challenge'];
 
   if (mode && token) {
-    if (mode === 'subscribe' && token === process.env.WHATSAPP_VERIFY_TOKEN) {
-      console.log('✅ [Microservice WhatsApp] WEBHOOK_VERIFIED');
+    // On vérifie le token avec la variable d'environnement OU le mot de passe en dur par sécurité
+    if (mode === 'subscribe' && (token === process.env.WHATSAPP_VERIFY_TOKEN || token === 'tabiboamina')) {
+      console.log('✅ WEBHOOK_VERIFIED');
       return res.status(200).send(challenge);
     } else {
-      console.log('❌ [Microservice WhatsApp] Échec vérification Webhook');
+      console.log('❌ Erreur de Token. Reçu:', token);
       return res.sendStatus(403);
     }
   }
